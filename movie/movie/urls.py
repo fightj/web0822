@@ -5,6 +5,7 @@ from accounts import views as accounts_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('signup/', accounts_views.signup, name='signup'),
-    path('accounts/', include('django.contrib.auth.urls')),  # 기본 인증 URL 포함
+    path('signup/', include('accounts.urls')),  # 회원가입 URL 추가
+    path('accounts/', include('accounts.urls')),  # 로그인 URL 추가
+    path('', accounts_views.home, name='home'),  # 홈 페이지 URL
 ]

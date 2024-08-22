@@ -115,6 +115,9 @@ USE_TZ = True
 
 # myproject/settings.py
 AUTH_USER_MODEL = 'accounts.MyUser'
+# myproject/settings.py
+
+LOGIN_REDIRECT_URL = '/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
