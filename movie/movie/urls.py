@@ -8,4 +8,6 @@ urlpatterns = [
     path('signup/', include('accounts.urls')),  # 회원가입 URL 추가
     path('accounts/', include('accounts.urls')),  # 로그인 URL 추가
     path('', accounts_views.home, name='home'),  # 홈 페이지 URL
+
+    path('boards/', include('boards.urls')),  # boards 앱의 URL 포함
 ]
