@@ -33,3 +33,16 @@ def post_list(request):
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'boards/post_detail.html', {'post': post})
+
+def edit_post(request, pk):
+    post = get_object_or_404(Post, id=pk)  # 게시물 가져오기
+    
+    if request.method == 'POST':
+        form = PostForm(request.POST, instance=post)  # 기존 게시물로 폼 초기화
+        if form.is_valid():
+            form.save()  # 수정 내용 저장
+            return redirect('post_detail', pk=pk)  # 리다이렉트 시 pk 사용
+    else:
+        form = PostForm(instance=post)  # GET 요청 시 기존 데이터로 폼을 초기화
+    
+    return render(request, 'boards/edit_post.html', {'form': form, 'post': post})

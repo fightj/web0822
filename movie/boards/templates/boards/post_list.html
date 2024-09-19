@@ -4,19 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>게시글 목록</title>
+    <style>
+        ul { list-style-type: none; padding: 0; }
+        li { margin-bottom: 10px; }
+        a { text-decoration: none; color: blue; }
+        a:hover { text-decoration: underline; }
+        p { margin: 5px 0; color: gray; }
+    </style>
 </head>
 <body>
     <h2>게시글 목록</h2>
     <ul>
-        {% for post in posts %}
-        <li>
-            <a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a>
-            <p>{{ post.author }} - {{ post.created_at }}</p>
-        </li>
-        {% endfor %}
+        {% if posts %}
+            {% for post in posts %}
+            <li>
+                <a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a>
+                <p>{{ post.author }} - {{ post.created_at|date:"Y-m-d H:i" }}</p>
+            </li>
+            {% endfor %}
+        {% else %}
+            <li>게시글이 없습니다.</li>
+        {% endif %}
     </ul>
     <a href="{% url 'create_post' %}">새 글 작성</a>
-
 </body>
 </html>
